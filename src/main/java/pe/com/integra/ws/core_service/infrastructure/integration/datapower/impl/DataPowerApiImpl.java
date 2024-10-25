@@ -65,6 +65,8 @@ public class DataPowerApiImpl implements DataPowerApi {
                 Procedimientos.PSCLI334.getValue()));
         parameters.setParamsIn(params);
 
+        
+
         ApiDBRequest apiDBRequest = new ApiDBRequest().setParameters(parameters)
                 .setMethodName(Procedimientos.PSCLI334.getMethod()).setApplicationName(applicationName);
 
