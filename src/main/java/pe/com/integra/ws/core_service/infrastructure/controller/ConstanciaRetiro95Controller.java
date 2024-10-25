@@ -27,8 +27,6 @@ import java.util.Map;
 
 
 public class ConstanciaRetiro95Controller {
-    private static final Logger log = LoggerFactory.getLogger(ConstanciaRetiro95Controller.class);
-
     @Autowired
     ConstanciaRetiro95Business constanciaRetiro95Business;
 

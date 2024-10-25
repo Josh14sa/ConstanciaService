@@ -18,9 +18,6 @@ import pe.com.integra.ws.core_service.infrastructure.controller.ConstanciaRetiro
 @Slf4j
 @Configuration
 public class SecretConfig {
-    private static final Logger log = LoggerFactory.getLogger(SecretResponse.class);
-
-
 
     @Bean
     @Profile("dev")
