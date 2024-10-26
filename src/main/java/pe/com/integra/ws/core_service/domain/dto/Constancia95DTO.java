@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Constancia95DTO {
-    private String cuspp;
+
     private String dni;
     private String primerNombre;
     private String segundoNombre;

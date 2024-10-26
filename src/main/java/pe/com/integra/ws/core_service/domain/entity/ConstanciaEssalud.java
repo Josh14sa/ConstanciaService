@@ -8,9 +8,10 @@ import lombok.NoArgsConstructor;
 public class ConstanciaEssalud {
 
     private String dni;
-    private String primerNombre;
-    private String segundoNombre;
-    private String primerApellidos;
-    private String segundoApellido;
+    private String tipo_documento;
+    private String primer_nombre;
+    private String segundo_nombre;
+    private String primer_apeliido;
+    private String segundo_apellido;
     private String fechaConstancia;
 }

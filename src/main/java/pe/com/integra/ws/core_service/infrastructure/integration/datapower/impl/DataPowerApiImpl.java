@@ -52,23 +52,27 @@ public class DataPowerApiImpl implements DataPowerApi {
 
     @Override
     @CaptureSpan(type = "repository")
-    public List<Constancia95> obtenerDatosReporteConstanciaRetiro95(String cuspp) {
+    public List<Constancia95> obtenerDatosReporteConstanciaRetiro95(String CUSPP) {
         log.info("inicio: dataPowerApi obtenerDatosReporteCuspp");
 
         List<Constancia95> listaReporte = null;
         List<ParamIn> params = new ArrayList<>();
         Parameters parameters = new Parameters();
 
-        params.add(new ParamIn(cuspp));
-        parameters.setDataSource(secretResponse.getGenerarConstanciaPowerDatasource());
+        params.add(new ParamIn(CUSPP));
+
+        parameters.setDataSource(secretResponse.getGenerarConstanciaDataPowerDatasource());
         parameters.setQuery(concatenarQueryDataPower(secretResponse.getGenerarConstanciaDataPowerSchema(),
                 Procedimientos.PSCLI334.getValue()));
         parameters.setParamsIn(params);
 
 
-
         ApiDBRequest apiDBRequest = new ApiDBRequest().setParameters(parameters)
                 .setMethodName(Procedimientos.PSCLI334.getMethod()).setApplicationName(applicationName);
+
+        /*ApiDBRequest apiDBRequest = this.apiDBRequest(params, applicationName, Procedimientos.PSCLI334.getValue(),
+                Procedimientos.PSCLI334.getMethod(), secretResponse.getGenerarConstanciaDataPowerDatasource(),
+                secretResponse.getGenerarConstanciaDataPowerSchema());*/
 
         URI dataPowerWsBaseUrl = URI.create(secretResponse.getGenerarConstanciaDataPowerUrlProcedure());
 
@@ -96,6 +100,21 @@ public class DataPowerApiImpl implements DataPowerApi {
         return listaReporte;
     }
 
+    private ApiDBRequest apiDBRequest(List<ParamIn> params, String applicationName, String procedure, String methodName,
+                                      String datasource, String schema) {
+        try {
+            Parameters parameters = new Parameters();
+            parameters.setDataSource(datasource);
+            parameters.setQuery(concatenarQueryDataPower(schema, procedure));
+            parameters.setParamsIn(params);
+            return new ApiDBRequest().setParameters(parameters).setMethodName(methodName)
+                    .setApplicationName(applicationName);
+        } catch (Exception e) {
+            log.error("Error creando request - apidb: {}", e.getMessage());
+            return null;
+        }
+    }
+
     @Override
     @CaptureSpan(type = "repository")
     public List<ConstanciaEssalud> obtenerDatosReportteConstanciaEssalud(String cuspp) {
@@ -107,10 +126,11 @@ public class DataPowerApiImpl implements DataPowerApi {
 
         params.add(new ParamIn(cuspp));
 
-        parameters.setDataSource(secretResponse.getGenerarConstanciaPowerDatasource());
+        parameters.setDataSource(secretResponse.getGenerarConstanciaDataPowerDatasource());
         parameters.setQuery(concatenarQueryDataPower(secretResponse.getGenerarConstanciaDataPowerSchema(),
                 Procedimientos.PSCLI335.getValue()));
         parameters.setParamsIn(params);
+
 
         ApiDBRequest apiDBRequest = new ApiDBRequest().setParameters(parameters)
                 .setMethodName(Procedimientos.PSCLI335.getMethod()).setApplicationName(applicationName);

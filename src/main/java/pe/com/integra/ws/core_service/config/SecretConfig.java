@@ -24,12 +24,12 @@ public class SecretConfig {
     public SecretResponse secretsResponse() {
         log.info("inicio: secrets");
         SecretResponse secretResponse = new SecretResponse();
-        secretResponse.setGenerarConstanciaKeyEncriptacion("");
+       //secretResponse.setGenerarConstanciaKeyEncriptacion("");
         secretResponse.setGenerarConstanciaDataPowerSchema("MINTPRO");
-        secretResponse.setGenerarConstanciaDataPowerUrlProcedure("https://apidb-integra-desa-procedure.desa.ocp.sura.pe");
-        secretResponse.setGenerarConstanciaDataPowerDatasource("GENERADOR_CONSTANCIA_AS400");
-        secretResponse.setGenerarConstanciaDataPowerTokenType("Bearer");
-        secretResponse.setGenerarConstanciaDataPowerTokenValue("");
+       secretResponse.setGenerarConstanciaDataPowerUrlProcedure("https://apidb-integra-desa-procedure.desa.ocp.sura.pe");
+        secretResponse.setGenerarConstanciaDataPowerDatasource("MKT_COMUNICACION_SERVICE_AS400");
+       secretResponse.setGenerarConstanciaDataPowerTokenType("Bearer");
+       secretResponse.setGenerarConstanciaDataPowerTokenValue("eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJta3QtZGVzYSIsImlhdCI6MTU4NzQxMjk3MCwiZXhwIjoxNjE4OTQ4OTcwLCJhdWQiOiJ3d3cuc3VyYS5jb20iLCJzdWIiOiJzZWd1cmlkYWRAc3VyYS5jb20iLCJkYXRhQmFzZSI6W3sibmFtZSI6Ik1LVF9DT01VTklDQUNJT05fU0VSVklDRV9BUzQwMCIsInBhdGgiOiJkYjIifV0sInNlcnZpY2UiOlt7Im5hbWUiOiJxdWVyeSJ9LHsibmFtZSI6InByb2NlZHVyZSJ9XSwidmVyc2lvbiI6ImtleVRva2VuVjEifQ.Xihp6qTdbWT5mEB21tZgSahA5g3SY-qdiF-WryLKK78");
 
         log.info("fin: secrets");
         return secretResponse;

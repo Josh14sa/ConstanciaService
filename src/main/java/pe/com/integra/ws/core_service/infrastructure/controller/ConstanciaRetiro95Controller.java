@@ -45,9 +45,9 @@ public class ConstanciaRetiro95Controller {
         Map<String, Object> response = new HashMap<>();
         response.put("datosContancia95", constancia95);
 
-        response.put("tipoReporte", "Constancia 95.5");
-        response.put("nombresAfiliado", constancia95.getPrimerNombre());
-        response.put("cuspp", cuspp.trim());
+        //response.put("tipoReporte", "Constancia 95.5");
+        //response.put("nombresAfiliado", constancia95.getPrimer_nombre());
+        //response.put("cuspp", cuspp.trim());
 
         return ResponseEntity.ok(response);
     }

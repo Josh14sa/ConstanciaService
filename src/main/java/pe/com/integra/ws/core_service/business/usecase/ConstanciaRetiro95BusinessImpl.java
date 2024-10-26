@@ -13,7 +13,6 @@ import pe.com.integra.ws.core_service.infrastructure.util.FileUtil;
 import pe.com.integra.ws.core_service.infrastructure.util.GenerarPDF;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 @Slf4j
@@ -45,17 +44,10 @@ public class ConstanciaRetiro95BusinessImpl implements ConstanciaRetiro95Busines
 
     @Override
     public ArrayList<Constancia95> obtenerConstanciaRetiro95(String cuspp) {
-        Map<String, Object> parametros = new HashMap<>();
-        parametros.put("CUSPP", cuspp);
-
-        // Aquí debes implementar la lógica para obtener la constancia.
-        // Este es un ejemplo simplificado y deberías adaptarlo a tus necesidades.
-        ArrayList<Constancia95> listarDatosConstanciaRetiro95 = new ArrayList<>();
-
-        // Simular obtener datos de un repositorio o fuente de datos.
-        // Agregar lógica para llenar listarDatosConstanciaRetiro95 aquí.
-
-        return listarDatosConstanciaRetiro95;
+        List<Constancia95> res = dataPowerApi.obtenerDatosReporteConstanciaRetiro95(cuspp);
+        for (Constancia95 carta : res)
+        return (ArrayList<Constancia95>) res;
+        return null;
     }
 
 

@@ -8,25 +8,25 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ConstanciaEssaludResponse {
 
-    @JsonProperty("DNI")
+    @JsonProperty("dni")
     private String dni;
 
-    @JsonProperty("TIPO_DOCUMENTO")
-    private String tipoDocumento;
+    @JsonProperty("tipo_documento")
+    private String tipo_documento;
 
-    @JsonProperty("PRIMER_APELLIDO")
-    private String primerApellido;
+    @JsonProperty("primer_apeliido")
+    private String primer_apeliido;
 
-    @JsonProperty("SEGUNDO_APELLIDO")
-    private String segundoApellido;
+    @JsonProperty("segundo_apellido")
+    private String segundo_apellido;
 
-    @JsonProperty("PRIMER_NOMBRE")
-    private String primerNombre;
+    @JsonProperty("primer_nombre")
+    private String primer_nombre;
 
-    @JsonProperty("SEGUNDO_NOMBRE")
-    private String segundoNombre;
+    @JsonProperty("segundo_nombre")
+    private String segundo_nombre;
 
-    @JsonProperty("FECHA_CONSTANCIA")
-    private String fechaConstancia;
+    @JsonProperty("fecha_primer_envio")
+    private String fecha_primer_envio;
 }
 

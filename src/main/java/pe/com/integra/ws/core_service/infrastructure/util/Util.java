@@ -21,7 +21,15 @@ public class Util {
         return schema.concat(PUNTO).concat(procedure);
     }
 
-    public static String concatenarTokenDataPower(String tokenType, String tokenValue) {
+    /*public static String concatenarTokenDataPower(String tokenType, String tokenValue) {
         return tokenType.concat(ESPACIO).concat(tokenValue);
+    }*/
+
+    public static String concatenarTokenDataPower(String tokenType, String tokenValue) {
+        if (tokenType == null || tokenValue == null) {
+            throw new IllegalArgumentException("El tipo o valor del token no puede ser nulo");
+        }
+        return tokenType.concat(" ").concat(tokenValue);
     }
+
 }
