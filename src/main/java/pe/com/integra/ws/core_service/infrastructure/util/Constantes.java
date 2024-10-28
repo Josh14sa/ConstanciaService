@@ -32,5 +32,9 @@ public class Constantes {
 
     public static final String MENSAJE_ERROR_GENERICO = "OCURRIO UN ERROR EN LA EJECUCION DEL WEB SERVICE";
     public static final String MENSAJE_ERROR_BBDD = "Ocurrio un error en la comunicación con la base de datos";
+    public static final String EXTENSION_PDF = "PDF";
+    public static final String EXTENSION_ZIP = "ZIP";
+
+    public static final String MENSAJE_ERROR_CUSPP = "No se encontraron datos para el CUSPP proporcionado";
 
 }

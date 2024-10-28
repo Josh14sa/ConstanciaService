@@ -1,10 +1,16 @@
 package pe.com.integra.ws.core_service.domain.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.checkerframework.checker.units.qual.A;
+
+import java.util.Date;
+import java.util.Map;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Constancia95 {
 
     private String dni;
@@ -14,6 +20,9 @@ public class Constancia95 {
     private String primer_apeliido;
     private String segundo_apellido;
     private String fecha_constancia;
+
+    public Constancia95(Map<String, Object> parameters) {
+    }
 
 
 }

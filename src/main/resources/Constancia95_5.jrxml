@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Constancia95_5" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" >
+	<property name="ireport.zoom" value="1.464100000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="nombreape" class="java.lang.String"/>
+	<parameter name="dni" class="java.lang.String"/>
+	<parameter name="tipoDocumento" class="java.lang.String"/>
+	<parameter name="cuspp" class="java.lang.String"/>
+	<parameter name="fecha" class="java.lang.String"/>
+	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="ruc" class="java.lang.String"/>
+	<parameter name="fechaConstancia" class="java.lang.String"/>
+	<parameter name="firma" class="java.lang.String"/>
+	<parameter name="gerente" class="java.lang.String"/>
+	<field name="fechaMovimiento" class="java.lang.String"/>
+	<field name="codigoExtracto" class="java.lang.String"/>
+	<field name="planillaInterna" class="java.lang.String"/>
+	<field name="periodoCotizacion" class="java.lang.String"/>
+	<field name="fechaSistema" class="java.lang.String"/>
+	<field name="remuneracionAsegurada" class="java.lang.String"/>
+	<field name="abono" class="java.lang.String"/>
+	<field name="cuotasAbono" class="java.lang.String"/>
+	<field name="tipoFondo" class="java.lang.String"/>
+	<field name="cargo" class="java.lang.String"/>
+	<field name="cuotaCargo" class="java.lang.String"/>
+	<field name="valorCuota" class="java.lang.String"/>
+	<field name="saldoCuenta" class="java.lang.String"/>
+	<field name="retenciones" class="java.lang.String"/>
+	<field name="rucEmpleador" class="java.lang.String"/>
+	<group name="Grupo detalle"/>
+	<background>
+		<band/>
+	</background>
+	<pageHeader>
+		<band height="130">
+			<image>
+				<reportElement x="385" y="0" width="130" height="51" />
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="158" y="80" width="227" height="20" forecolor="#0029A6" />
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="13" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[CONSTANCIA DEL RETIRO]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="503">
+			<staticText>
+				<reportElement x="40" y="195" width="475" height="30" forecolor="#737372" />
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Se expide la presente constancia a solicitud del interesado(a) para los fines que estime convenientes.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="40" y="10" width="475" height="55" forecolor="#737372" />
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Por el presente documento, AFP Integra con RUC 20157036794, deja constancia que el(la) Sr(a) " + $P{nombreape} + " identificado(a) con el " + $P{tipoDocumento} + " " + $P{dni} + " y con el Código Único Sistema Privado de Pensiones (CUSPP) "+$P{cuspp}+" se encuentra afiliado(a) a nuestra Administradora Privada de Fondos de Pensiones."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="40" y="80" width="475" height="45" forecolor="#737372" />
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["De conformidad con la normativa legal vigente, los afiliados que han hecho uso de las opciones de retiro de sus fondos y continúan su actividad laboral en calidad de trabajadores dependientes o independientes, podrán no realizar aportes obligatorios al SPP."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="40" y="140" width="475" height="45" forecolor="#737372" />
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["A través del presente documento, dejamos constancia que con fecha " +$P{fechaConstancia}+ " nuestro(a) afiliado(a) " + $P{nombreape} + " optó por el retiro de sus fondos al amparo de lo establecido en la Ley Nª 30425 y sus modificatorias. "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="40" y="277" width="216" height="20" forecolor="#737372" />
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="40" y="446" width="216" height="21" forecolor="#737372" />
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Gerente de Operaciones]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="473" width="203" height="20" forecolor="#737372" />
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[RUC: 20157036794]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="461" width="203" height="20" forecolor="#737372" />
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[AFP INTEGRA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="40" y="429" width="156" height="17" forecolor="#0029A6" />
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{gerente}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="40" y="346" width="174" height="73" />
+				<imageExpression><![CDATA[$P{firma}]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="40">
+			<staticText>
+				<reportElement x="40" y="0" width="412" height="20" forecolor="#737372" />
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[*Esta información se emite sobre la base de la información registrada en nuestro sistema a la fecha]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

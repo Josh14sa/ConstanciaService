@@ -31,11 +31,6 @@ public class SecretResponse {
 
 
 
-    @JsonProperty("MARKETINGCLOUD_SFTP_USER")
-    private String marketingcloudSftpUser;
-
-    @JsonProperty("MARKETINGCLOUD_SFTP_PASSWORD")
-    private String marketingcloudSftpPassword;
 
     @JsonProperty("MARKETINGCLOUD_GRANT_TYPE")
     private String marketingcloudGrantType;

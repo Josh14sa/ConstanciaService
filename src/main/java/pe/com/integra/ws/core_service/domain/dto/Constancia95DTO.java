@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Constancia95DTO {
 
+    private String cuspp;
     private String dni;
     private String primerNombre;
     private String segundoNombre;
@@ -17,6 +18,7 @@ public class Constancia95DTO {
     private String segundoApellido;
     private String fechaConstancia;
     private String tipoDocumento;
+
 
     public String getNombreCompletoAfiliado() {
         return getPrimerNombre().trim() + " " + getSegundoNombre().trim() + " " + getPrimerApellido().trim() + " " + getSegundoApellido().trim();
@@ -57,5 +59,9 @@ public class Constancia95DTO {
 
     public String getFechaActual() {
         return "Lima, " + getDay() + " de " + obtenerMes() + " de " + getAnio();
+    }
+
+    public String getRealPath(String s) {
+        return s;
     }
 }

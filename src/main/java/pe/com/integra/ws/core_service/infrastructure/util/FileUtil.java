@@ -27,4 +27,9 @@ public class FileUtil {
             throw new ComunicacionException(e.getMessage(), e.getCause());
         }
     }
+
+    public String formatoReporte(String carta) {
+        String[] nombre = carta.split("\\.");
+        return nombre[1].trim();
+    }
 }

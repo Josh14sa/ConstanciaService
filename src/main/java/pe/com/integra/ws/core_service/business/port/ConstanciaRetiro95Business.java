@@ -15,4 +15,6 @@ public interface ConstanciaRetiro95Business {
     ArrayList<Constancia95> obtenerConstanciaRetiro95(String cuspp);
 
     public ArrayList obtenerConstanciaRetiro95(Map parametros) throws Exception;
+
+
 }
