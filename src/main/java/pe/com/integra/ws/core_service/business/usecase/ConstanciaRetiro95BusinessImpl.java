@@ -37,55 +37,6 @@ public class ConstanciaRetiro95BusinessImpl implements ConstanciaRetiro95Busines
     @Autowired
     public FileUtil fileUtil;
 
-    @Autowired
-    private ResourceLoader resourceLoader;
-
-    public void generateReport(HttpServletResponse response, List<Constancia95> dataList) throws Exception {
-
-        // Verificar que la lista tenga datos
-        if (dataList == null || dataList.isEmpty()) {
-            throw new Exception("No hay datos en la lista para generar el reporte.");
-        }
-
-        // Cargar el archivo JRXML
-        InputStream jasperStream = resourceLoader.getResource("classpath:Constancia95_5.jrxml").getInputStream();
-
-        // Compilar el archivo JRXML
-        JasperReport jasperReport = JasperCompileManager.compileReport(jasperStream);
-
-        // Parámetros del reporte
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("nombreape", "Nombre Apellido"); // Cambia esto según tus necesidades
-        parameters.put("dni", "12345678"); // Cambia esto según tus necesidades
-        parameters.put("tipoDocumento", "DNI"); // Cambia esto según tus necesidades
-        parameters.put("cuspp", "CUSPP123456"); // Cambia esto según tus necesidades
-        parameters.put("fecha", "2024-10-28"); // Cambia esto según tus necesidades
-        parameters.put("logo", "/ruta/del/logo.png"); // Cambia esto según tus necesidades
-        parameters.put("ruc", "20157036794"); // Cambia esto según tus necesidades
-        parameters.put("fechaConstancia", "2024-10-28"); // Cambia esto según tus necesidades
-        parameters.put("firma", "/ruta/de/firmaConstancia.png"); // Cambia esto según tus necesidades
-        parameters.put("gerente", "Gerente Nombre"); // Cambia esto según tus necesidades
-
-        // Crear un datasource
-        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(dataList);
-
-        // Llenar el reporte
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
-
-        // Comprobar si el jasperPrint tiene datos
-        if (jasperPrint.getPages().isEmpty()) {
-            throw new Exception("No hay datos para generar el reporte.");
-        }
-
-        // Configurar la respuesta HTTP
-        response.setContentType("application/pdf");
-        response.setHeader("Content-Disposition", "attachment; filename=report.pdf");
-
-        // Exportar a PDF
-        JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
-    }
-
-
     @Override
     public void generarArchivoRetiros95(String cuspp) {
 

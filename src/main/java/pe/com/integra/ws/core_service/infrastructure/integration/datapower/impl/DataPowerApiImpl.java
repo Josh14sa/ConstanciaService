@@ -70,10 +70,6 @@ public class DataPowerApiImpl implements DataPowerApi {
         ApiDBRequest apiDBRequest = new ApiDBRequest().setParameters(parameters)
                 .setMethodName(Procedimientos.PSCLI334.getMethod()).setApplicationName(applicationName);
 
-        /*ApiDBRequest apiDBRequest = this.apiDBRequest(params, applicationName, Procedimientos.PSCLI334.getValue(),
-                Procedimientos.PSCLI334.getMethod(), secretResponse.getGenerarConstanciaDataPowerDatasource(),
-                secretResponse.getGenerarConstanciaDataPowerSchema());*/
-
         URI dataPowerWsBaseUrl = URI.create(secretResponse.getGenerarConstanciaDataPowerUrlProcedure());
 
         ApiDBResponse<List<ConstanciaRetiro95Response>, List<OutResultResponse>> response = dataPowerFeign

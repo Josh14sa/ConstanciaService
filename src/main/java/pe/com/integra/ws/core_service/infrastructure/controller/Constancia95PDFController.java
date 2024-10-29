@@ -1,7 +1,5 @@
 package pe.com.integra.ws.core_service.infrastructure.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -13,11 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import pe.com.integra.ws.core_service.domain.dto.Constancia95DTO;
-import pe.com.integra.ws.core_service.infrastructure.util.GenerarPDF;
+import pe.com.integra.ws.core_service.domain.dto.GenerarConstanciasDTO;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.Collections;
 import java.util.HashMap;
@@ -28,59 +23,82 @@ import java.util.Map;
 @RequestMapping("/api/constancia")
 public class Constancia95PDFController {
 
-    @Autowired
-    private GenerarPDF generador; // Asegúrate de que GenerarPDF sea un bean de Spring
-
     @PostMapping("/imprimir")
-    public ResponseEntity<InputStreamResource> imprimirConstancia(@RequestBody Constancia95DTO request) {
+    public ResponseEntity<byte[]> imprimirConstancia(@RequestBody GenerarConstanciasDTO request) {
         try {
             // Cargar el archivo JRXML desde el paquete resources
-            InputStream jasperStream = getClass().getResourceAsStream("/Constancia95_5.jrxml");
-            if (jasperStream == null) {
+            InputStream jrxmlStream = getClass().getClassLoader().getResourceAsStream("Constancia95_5.jrxml");
+            if (jrxmlStream == null) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
             }
 
-            GenerarPDF generador = new GenerarPDF();
-            String gerente = "Shirley Parodi Arevalo";
+            // Compilar el archivo JRXML
+            JasperReport report = JasperCompileManager.compileReport(jrxmlStream);
 
-            // Crear un mapa para los parámetros
+            // Configurar los parámetros para el informe
             Map<String, Object> parameters = new HashMap<>();
             parameters.put("nombreape", request.getNombreCompletoAfiliado());
+            parameters.put("cuspp", request.getCuspp());
             parameters.put("dni", request.getDni());
             parameters.put("tipoDocumento", request.getTipoDocumento());
-            parameters.put("cuspp", request.getCuspp());
-            parameters.put("fecha", request.getFechaActual());
-            parameters.put("logo", getClass().getResourceAsStream("/logo.png"));
             parameters.put("fechaConstancia", request.getFechaConstancia());
-            parameters.put("firma", getClass().getResourceAsStream("/firmaConstancia.png"));
-            parameters.put("gerente", gerente);
+            parameters.put("fecha", request.getFechaActual());
 
-            // Compilar el reporte
-            JasperReport reporte = generador.getCompiledReport1(jasperStream);
+            // Cargar imágenes de recursos (si existen)
+            InputStream logoStream = getClass().getClassLoader().getResourceAsStream("logo.png");
+            if (logoStream != null) {
+                parameters.put("logo", logoStream);
+            } else {
+                // Manejar el caso donde no se encontró el logo
+                System.out.println("Logo no encontrado");
+            }
 
-            // Crear un datasource (puedes usar una lista de objetos si es necesario)
-            JRDataSource dataSource = new JRBeanCollectionDataSource(Collections.emptyList());
+            InputStream firmaStream = getClass().getClassLoader().getResourceAsStream("firmaConstancia.png");
+            if (firmaStream != null) {
+                parameters.put("firma", firmaStream);
+            } else {
+                // Manejar el caso donde no se encontró la firma
+                System.out.println("Firma no encontrada");
+            }
 
-            // Llenar el informe
-            JasperPrint print = JasperFillManager.fillReport(reporte, parameters, dataSource);
+            parameters.put("gerente", "Shirley Parodi Arevalo");
 
-            // Exportar a PDF
+            // Crear una lista con el objeto `Constancia95DTO`
+            List<GenerarConstanciasDTO> dataList = Collections.singletonList(request);
+
+            // Crear el JRDataSource con datos
+            JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(dataList);
+
+            // Llenar el informe con los datos y parámetros
+            JasperPrint print = JasperFillManager.fillReport(report, parameters, dataSource);
+
+            // Verificar si el informe tiene páginas
+            if (print.getPages().isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+            }
+
+            // Exportar a PDF en un array de bytes
             byte[] pdfBytes = JasperExportManager.exportReportToPdf(print);
 
-            // Configurar las cabeceras de la respuesta
+            // Configurar los encabezados de la respuesta
             HttpHeaders headers = new HttpHeaders();
-            headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + request.getCuspp().trim() + ".pdf");
-            headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_PDF_VALUE);
+            headers.setContentType(MediaType.APPLICATION_PDF);
+            headers.setContentDispositionFormData("attachment", request.getCuspp().trim() + ".pdf");
             headers.setContentLength(pdfBytes.length);
 
-            // Devolver el PDF
-            InputStreamResource resource = new InputStreamResource(new ByteArrayInputStream(pdfBytes));
+            // Devolver el PDF en formato byte[]
             return ResponseEntity.ok()
                     .headers(headers)
-                    .body(resource);
+                    .body(pdfBytes);
+
+        } catch (JRException e) {
+            // Manejo específico de errores de JasperReports
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         } catch (Exception e) {
-            e.printStackTrace(); // Imprimir traza del error
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            // Manejo general de errores
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 }

@@ -19,6 +19,41 @@ import pe.com.integra.ws.core_service.infrastructure.controller.ConstanciaRetiro
 @Configuration
 public class SecretConfig {
 
+
+   /* @Value("${aws.secretname}")
+    private String awsSecretName;
+
+    @Value("${aws.region}")
+    private String awsSecretRegion;
+
+    @Bean
+    @Profile("cloud")
+    public SecretResponse secretResponse() {
+        AWSSecretsManager client = AWSSecretsManagerClientBuilder.standard().withRegion(awsSecretRegion).build();
+        GetSecretValueRequest getSecretValueRequest = new GetSecretValueRequest().withSecretId(awsSecretName);
+        GetSecretValueResult getSecretValueResult = client.getSecretValue(getSecretValueRequest);
+        String secretString = getSecretValueResult.getSecretString();
+
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            SecretResponse secretResponse = mapper.readValue(secretString, SecretResponse.class);
+            log.info("secretResponse: {}", new ObjectMapper().writeValueAsString(secretResponse));
+            secretResponse.setGenerarConstanciaDataPowerSchema(EncryptionCLI.decrypt(Base64.decodeBase64(secretResponse.getGenerarConstanciaDataPowerSchema()), secretResponse.getGenerarConstanciaKeyEncriptacion()));
+            secretResponse.setGenerarConstanciaDataPowerUrlProcedure(EncryptionCLI.decrypt(Base64.decodeBase64(secretResponse.getGenerarConstanciaDataPowerUrlProcedure()), secretResponse.getGenerarConstanciaKeyEncriptacion()));
+            secretResponse.setGenerarConstanciaDataPowerDatasource(EncryptionCLI.decrypt(Base64.decodeBase64(secretResponse.getGenerarConstanciaDataPowerDatasource()), secretResponse.getGenerarConstanciaKeyEncriptacion()));
+            secretResponse.setGenerarConstanciaDataPowerTokenType(EncryptionCLI.decrypt(Base64.decodeBase64(secretResponse.getGenerarConstanciaDataPowerTokenType()), secretResponse.getGenerarConstanciaKeyEncriptacion()));
+            secretResponse.setGenerarConstanciaDataPowerTokenValue(EncryptionCLI.decrypt(Base64.decodeBase64(secretResponse.getGenerarConstanciaDataPowerTokenValue()), secretResponse.getGenerarConstanciaKeyEncriptacion()));
+
+            log.info("Result secrets: {}", new ObjectMapper().writeValueAsString(secretResponse));
+
+            return secretResponse;
+        } catch (Exception e) {
+            log.error("Error acceso AWS Secrets: ", e);
+            return null;
+        }
+    }*/
+
     @Bean
     @Profile("dev")
     public SecretResponse secretsResponse() {

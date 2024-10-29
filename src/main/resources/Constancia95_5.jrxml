@@ -8,10 +8,10 @@
 	<parameter name="tipoDocumento" class="java.lang.String"/>
 	<parameter name="cuspp" class="java.lang.String"/>
 	<parameter name="fecha" class="java.lang.String"/>
-	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="logo" class="java.lang.Object"/>
 	<parameter name="ruc" class="java.lang.String"/>
 	<parameter name="fechaConstancia" class="java.lang.String"/>
-	<parameter name="firma" class="java.lang.String"/>
+	<parameter name="firma" class="java.lang.Object"/>
 	<parameter name="gerente" class="java.lang.String"/>
 	<field name="fechaMovimiento" class="java.lang.String"/>
 	<field name="codigoExtracto" class="java.lang.String"/>
