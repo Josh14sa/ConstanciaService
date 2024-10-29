@@ -11,13 +11,10 @@ import com.sura.arquitectura.sharedIdp.model.resquest.Parameters;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pe.com.integra.ws.core_service.domain.aws.SecretResponse;
-import pe.com.integra.ws.core_service.domain.dto.Constancia95DTO;
-import pe.com.integra.ws.core_service.domain.entity.Constancia95;
+import pe.com.integra.ws.core_service.domain.entity.ConstanciaRetiro95;
 import pe.com.integra.ws.core_service.domain.entity.ConstanciaEssalud;
 import pe.com.integra.ws.core_service.infrastructure.integration.datapower.feign.port.DataPowerFeign;
 import pe.com.integra.ws.core_service.infrastructure.integration.datapower.feign.response.ConstanciaEssaludResponse;
@@ -34,7 +31,6 @@ import java.net.URI;
 import java.util.ArrayList;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 @Slf4j
@@ -52,10 +48,10 @@ public class DataPowerApiImpl implements DataPowerApi {
 
     @Override
     @CaptureSpan(type = "repository")
-    public List<Constancia95> obtenerDatosReporteConstanciaRetiro95(String CUSPP) {
+    public List<ConstanciaRetiro95> obtenerDatosReporteConstanciaRetiro95(String CUSPP) {
         log.info("inicio: dataPowerApi obtenerDatosReporteCuspp");
 
-        List<Constancia95> listaReporte = null;
+        List<ConstanciaRetiro95> listaReporte = null;
         List<ParamIn> params = new ArrayList<>();
         Parameters parameters = new Parameters();
 
@@ -84,7 +80,7 @@ public class DataPowerApiImpl implements DataPowerApi {
 
         if (Objects.nonNull(response.getResult().getRows())) {
             List<ConstanciaRetiro95Response> listDatosResponse = response.getResult().getRows();
-            Type listTypeDto = new TypeToken<List<Constancia95>>(){}.getType();
+            Type listTypeDto = new TypeToken<List<ConstanciaRetiro95>>(){}.getType();
             listaReporte = new ModelMapper().map(listDatosResponse, listTypeDto);
         }
 
@@ -158,14 +154,4 @@ public class DataPowerApiImpl implements DataPowerApi {
 
     }
 
-    @Override
-    @CaptureSpan(type = "repository")
-    public ArrayList obtenerConstanciaRetiro95(Map<String, Object> parametros) throws Exception {
-        return null;
-    }
-
-    @Override
-    public ArrayList<Constancia95DTO> obtenerConstanciaEsSalud(Map<String, Object> parametros) {
-        return null;
-    }
 }

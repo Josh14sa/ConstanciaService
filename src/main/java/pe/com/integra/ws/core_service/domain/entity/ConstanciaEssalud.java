@@ -1,10 +1,12 @@
 package pe.com.integra.ws.core_service.domain.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class ConstanciaEssalud {
 
     private String dni;
@@ -13,5 +15,6 @@ public class ConstanciaEssalud {
     private String segundo_nombre;
     private String primer_apeliido;
     private String segundo_apellido;
-    private String fechaConstancia;
+    private String fecha_primer_envio;
+
 }

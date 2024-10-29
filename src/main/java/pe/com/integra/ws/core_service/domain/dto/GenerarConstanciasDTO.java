@@ -18,7 +18,10 @@ public class GenerarConstanciasDTO {
     private String primerApellido;
     private String segundoApellido;
     private String fechaConstancia;
+    private String fechaEsSalud;
+    private String fechaPrimerEnvio;
     private String tipoDocumento;
+    private String fechaActual;
 
     private Date fechaMovimiento;
     private String codigoExtracto;

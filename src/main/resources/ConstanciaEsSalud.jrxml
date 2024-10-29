@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ConstanciaEsSalud" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" >
+	<property name="ireport.zoom" value="1.3310000000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="nombreape" class="java.lang.String"/>
+	<parameter name="cuspp" class="java.lang.String"/>
+	<parameter name="dni" class="java.lang.String"/>
+	<parameter name="tipoDocumento" class="java.lang.String"/>
+	<parameter name="fecha" class="java.lang.String"/>
+	<parameter name="logo" class="java.lang.Object"/>
+	<parameter name="gerente" class="java.lang.String"/>
+	<parameter name="firma" class="java.lang.Object"/>
+	<parameter name="fechaEsSalud" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="140">
+			<staticText>
+				<reportElement x="64" y="80" width="431" height="20" forecolor="#0029A6" />
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[CONSTANCIA DE RETENCIÓN 4.5% E INFORME A ESSALUD]]></text>
+			</staticText>
+			<image>
+				<reportElement x="383" y="0" width="132" height="53" />
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="640">
+			<textField>
+				<reportElement x="40" y="375" width="475" height="28" forecolor="#737372" />
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Se expide la presente constancia a solicitud del interesado(a) para los fines que estime convenientes."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="40" y="0" width="475" height="55" forecolor="#737372" />
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Por el presente documento, AFP Integra con RUC 20157036794, deja constancia que el(la) Sr(a) "+$P{nombreape} + " identificado(a) con " + $P{tipoDocumento} + " " + $P{dni} + " y con Código Único Sistema Privado de Pensiones (CUSPP) N° " + $P{cuspp} + " se encuentra afiliado(a) a nuestra Administradora Privada de Fondos de Pensiones."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="40" y="190" width="475" height="90" forecolor="#737372" />
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Asimismo, de acuerdo con el Titulo IV, 4.1 Registro de Alta y Baja de Derechohabiente y Acreditación del Oficio N°301 GC-ESSALUD-2016, Procedimiento de Retención y Transferencia del 4.5% de la Cuenta Individual de Capitalización (CIC) de Aportes Obligatorios al Seguro Social de Salud – Essalud y Otorgamiento de Prestaciones en el marco de la Ley N°30478, emitido con Oficio N°301 GC-Essalud-2016, \"EsSalud, de oficio, procederá al registro y acreditación del beneficiario de la Ley N°30478, a más tardar al día siguiente de remitida la información por parte de la AFP.\""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="40" y="70" width="475" height="105" forecolor="#737372" />
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Asimismo, de conformidad con lo establecido en la vigésimo Cuarta Disposición Final y Transitoria del Texto Único Ordenado de la Ley del Sistema Privado de Administración de Fondos de Pensiones, aprobado por el Decreto Supremo 054- 97-EF y su Reglamento Operativo, el monto equivalente al 4,5% del saldo de la CIC de aportes obligatorios, debe ser retenido y transferido por la AFP directamente a EsSalud, para garantizar el acceso a las mismas prestaciones y beneficios del asegurado regular del régimen contributivo de la seguridad social en salud, de que trata la Ley Nª 26790, independientemente de las opciones de retiro y/o pensión que elija el afiliado."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="40" y="295" width="475" height="64" forecolor="#737372" />
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Finalmente, a través del presente documento, dejamos constancia que hemos realizado la retención del 4.5% del saldo de la CIC de aportes obligatorios de nuestro(a) afiliado(a) " + $P{nombreape}+  " siendo informado a ESSALUD vía correo electrónico con fecha " + $P{fechaEsSalud} + " conforme lo establece el literal a) numeral 3.1, titulo III del Oficio N°301-GC-ESSALUD-2016."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="40" y="450" width="210" height="20" forecolor="#737372" />
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="40" y="592" width="233" height="21" forecolor="#737372" />
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Gerente de Operaciones]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="619" width="203" height="20" forecolor="#737372" />
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[RUC: 20157036794]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="607" width="203" height="20" forecolor="#737372" />
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[AFP INTEGRA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="40" y="575" width="156" height="17" forecolor="#0029A6" />
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{gerente}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="40" y="490" width="174" height="73" />
+				<imageExpression><![CDATA[$P{firma}]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20">
+			<staticText>
+				<reportElement x="40" y="0" width="431" height="20" forecolor="#737372" />
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[*Esta información se emite sobre la base de la información registrada en nuestro sistema a la fecha]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

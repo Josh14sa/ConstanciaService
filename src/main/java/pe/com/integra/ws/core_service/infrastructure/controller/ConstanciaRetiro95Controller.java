@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pe.com.integra.ws.core_service.business.port.ConstanciaRetiro95Business;
-import pe.com.integra.ws.core_service.domain.entity.Constancia95;
+import pe.com.integra.ws.core_service.domain.entity.ConstanciaRetiro95;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,13 +33,13 @@ public class ConstanciaRetiro95Controller {
     @ApiOperation(value = "Operacion: Genera constancia de retiro por cuspp")
 
     public ResponseEntity<?> obtenerConstanciaRetiro(@RequestParam String cuspp) {
-        ArrayList<Constancia95> listarDatosConstanciaRetiro= constanciaRetiro95Business.obtenerConstanciaRetiro95(cuspp);
+        ArrayList<ConstanciaRetiro95> listarDatosConstanciaRetiro= constanciaRetiro95Business.obtenerConstanciaRetiro95(cuspp);
 
         if (listarDatosConstanciaRetiro == null || listarDatosConstanciaRetiro.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(MENSAJE_ERROR_CUSPP);
         }
-        Constancia95 constancia95 = listarDatosConstanciaRetiro.get(0);
+        ConstanciaRetiro95 constancia95 = listarDatosConstanciaRetiro.get(0);
         // String emailAfiliado = constanciaService.obtenerEmailAfiliado(cuspp);
         Map<String, Object> response = new HashMap<>();
         response.put("datosContanciaRetiro95", constancia95);
