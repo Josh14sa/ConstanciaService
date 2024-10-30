@@ -31,7 +31,7 @@ public class ConstanciaRetiro95BusinessImpl implements ConstanciaRetiro95Busines
     public byte[] generarConstanciaPDFRetiro95(String cuspp) throws Exception {
         GenerarConstanciasDTO request = obtenerDatosPorCuspp(cuspp);
         if (request == null) {
-            return null;
+            throw new Exception("Datos no encontrados");
         }
 
         InputStream jrxmlStream = getClass().getClassLoader().getResourceAsStream("Constancia95_5.jrxml");
@@ -94,6 +94,7 @@ public class ConstanciaRetiro95BusinessImpl implements ConstanciaRetiro95Busines
         parameters.put("gerente", "Shirley Parodi Arevalo");
         return parameters;
     }
+
 }
 
 

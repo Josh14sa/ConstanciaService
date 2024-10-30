@@ -1,6 +1,5 @@
 package pe.com.integra.ws.core_service.config;
 
-
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;

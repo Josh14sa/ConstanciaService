@@ -32,7 +32,7 @@ public class ConstanciaEsSaludBusinessImpl implements ConstanciaEsSaludBusiness 
     public byte[] generarConstanciaPDFEsSalud(String cuspp) throws Exception {
         GenerarConstanciasDTO request = obtenerDatosPorCuspp(cuspp);
         if (request == null) {
-            return null;
+            throw new Exception("Datos no encontrados");
         }
 
         InputStream jrxmlStream = getClass().getClassLoader().getResourceAsStream("ConstanciaEsSalud.jrxml");

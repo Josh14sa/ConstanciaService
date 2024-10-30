@@ -11,6 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SecretResponse {
+
     @JsonProperty("GENERAR_CONSTANCIA_KEY_ENCRIPTACION")
     private String generarConstanciaKeyEncriptacion;
 
@@ -28,17 +29,5 @@ public class SecretResponse {
 
     @JsonProperty("GENERAR_CONSTANCIA_DATAPOWER_TOKEN_VALUE")
     private String generarConstanciaDataPowerTokenValue;
-
-
-
-
-    @JsonProperty("MARKETINGCLOUD_GRANT_TYPE")
-    private String marketingcloudGrantType;
-
-    @JsonProperty("MARKETINGCLOUD_CLIENT_ID")
-    private String marketingcloudClientId;
-
-    @JsonProperty("MARKETINGCLOUD_CLIENT_SECRET")
-    private String marketingcloudClientSecret;
 
 }

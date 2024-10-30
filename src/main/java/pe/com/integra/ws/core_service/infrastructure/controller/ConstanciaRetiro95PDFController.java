@@ -21,7 +21,7 @@ public class ConstanciaRetiro95PDFController {
     @PostMapping("/descargar-pdf")
     @CaptureTransaction(type = "controller")
     @ApiOperation(value = "Operacion: Genera constancia en pdf de retiro95 por cuspp")
-    public ResponseEntity<byte[]> imprimirConstancia(
+    public ResponseEntity<byte[]> imprimirConstanciaRetiro95(
             @RequestParam(value = "cuspp") String cuspp) {
         try {
             byte[] pdfBytes = constanciaRetiro95Business.generarConstanciaPDFRetiro95(cuspp);
@@ -29,7 +29,6 @@ public class ConstanciaRetiro95PDFController {
             if (pdfBytes == null) {
                 return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
             }
-
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_PDF);
             headers.setContentDispositionFormData("attachment", cuspp.trim() + ".pdf");
@@ -37,7 +36,6 @@ public class ConstanciaRetiro95PDFController {
             return ResponseEntity.ok().headers(headers).body(pdfBytes);
 
         } catch (ComunicacionException.InvalidCusppException e) {
-            // Devuelve un mensaje de error personalizado para un CUSPP inválido
             String errorMessage = "Error: " + e.getMessage();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(errorMessage.getBytes());

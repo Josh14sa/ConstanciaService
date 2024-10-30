@@ -44,22 +44,6 @@ public class GenerarConstanciasDTO {
         return getPrimerNombre().trim() + " " + getSegundoNombre().trim() + " " + getPrimerApellido().trim() + " " + getSegundoApellido().trim();
     }
 
-    public String getPrimerNombre() {
-        return primerNombre;
-    }
-
-    public String getSegundoNombre() {
-        return segundoNombre;
-    }
-
-    public String getPrimerApellido() {
-        return primerApellido;
-    }
-
-    public String getSegundoApellido() {
-        return segundoApellido;
-    }
-
     public static int getAnio() {
         Calendar cal = Calendar.getInstance();
         return cal.get(Calendar.YEAR);

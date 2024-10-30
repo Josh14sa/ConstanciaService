@@ -12,7 +12,7 @@ public final class ComunicacionException extends RuntimeException {
         super(message, cause);
     }
 
-    public class InvalidCusppException extends RuntimeException {
+    public static class InvalidCusppException extends RuntimeException {
         public InvalidCusppException(String message) {
             super(message);
         }
